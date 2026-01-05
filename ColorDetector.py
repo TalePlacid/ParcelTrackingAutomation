@@ -16,6 +16,9 @@ REPORT_DATE: int = int(os.getenv("REPORT_DATE"))
 TRACKING_NUMBER: int = int(os.getenv("TRACKING_NUMBER"))
 RESENT_NUMBER:int = int(os.getenv("RESENT_NUMBER"))
 DELIVERY_DATE: int = int(os.getenv("DELIVERY_DATE"))
+UNDELIVERED_REASON_DETAIL : int = int(os.getenv("UNDELIVERED_REASON_DETAIL"))
+
+CLIENT_NAME : str = os.getenv("CLIENT_NAME")
 
 class ColorDetector:
     @staticmethod
@@ -54,6 +57,19 @@ class ColorDetector:
 
         # 흰색이면, 참으로 설정한다.
         if color is None or color == "00000000":
+            ret = True
+
+        return ret
+
+    @staticmethod
+    def is_pink(work_sheet: Worksheet, row_number: int) -> bool:
+        ret = False
+
+        # 1. 셀을 읽는다.
+        cell = work_sheet.cell(row=row_number, column=UNDELIVERED_REASON_DETAIL)
+
+        # 2. 미배송 사유에 고객사명이 포함되어 있는지 확인한다.
+        if cell.value is not None and CLIENT_NAME in cell.value:
             ret = True
 
         return ret

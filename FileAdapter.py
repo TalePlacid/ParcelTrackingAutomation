@@ -23,7 +23,7 @@ class FileAdapter:
         # 2. 로그를 작성한다.
         file.write("[처리 사항]\n")
         file.write(f"경로 : {path}\n")
-        file.write(f"A열 흰색 수 : {loaded_count}\n")
+        file.write(f"검색된 수 : {loaded_count}\n")
         file.write(f"배송완료일이 조회된 수 : {fetched_count}\n")
         file.write(f"엑셀파일에 반영된 수 : {updated_count}\n\n")
 

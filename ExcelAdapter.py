@@ -42,8 +42,8 @@ class ExcelAdaptor:
         count = 0
         i += 1
         while self.work_sheet.cell(row = i, column = REPORT_DATE).value is not None:
-            # 2.1. 색이 흰색이면,
-            if ColorDetector.is_white(self.work_sheet, i):
+            # 2.1. 색이 흰색이거나, 분홍색이면,
+            if ColorDetector.is_white(self.work_sheet, i) or ColorDetector.is_pink(self.work_sheet, i):
                 # 2.1.1. 재배송번호를 읽는다.
                 tracking_number = str(self.work_sheet.cell(row = i, column = RESENT_NUMBER).value)
                 is_resent = True
