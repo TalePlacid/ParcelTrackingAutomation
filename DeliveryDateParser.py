@@ -34,8 +34,8 @@ class DeliveryDateParser:
                 today = datetime.date.today()
                 year = today.year
 
-                # 2.2. 조회 시점이 1월이고, 배송완료일이 12월이면, 작년으로 보정한다.
-                if  mm == 12 and today.month == 1:
+                # 2.2. 조회 시점의 월이 배송완료 월보다 빠르면, 작년으로 보정한다.
+                if  mm > today.month:
                     year -= 1
 
                 parsed = datetime.date(year, mm, dd)
